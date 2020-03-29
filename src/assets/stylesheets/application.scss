@@ -1,0 +1,15 @@
+@import "./components/navbar.scss";
+@import "./components/image.scss";
+@import "./components/hamburger.scss";
+@import "./home.scss";
+
+@font-face {
+  font-family: "Big-John";
+  src: url("../fonts/big-john.woff") format("woff");
+}
+
+body{
+  background-color: black;
+  font-family: "Big-John";
+  color: white;
+}
