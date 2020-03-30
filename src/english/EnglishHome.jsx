@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-import EnglishNavbar from "./EnglishNavbar"
+import EnglishNavbar from "./EnglishNavbar";
+import Sketch from "../sketch";
 
 class Home extends Component {
   constructor(props){
@@ -9,8 +10,8 @@ class Home extends Component {
 
     this.state = {
       rangeValue: 0,
-      specialImageSource: [`${currentURL}/images/special_effect/tribe1.png`, `${currentURL}/images/special_effect/it1.png`],
-      beautyImageSource: [`${currentURL}/images/beauty/beauty1.png`, `${currentURL}/images/beauty/marylyn.png`],
+      specialImageSource: '["/images/special_effect/tribe1.png", "/images/special_effect/it1.png"]',
+      beautyImageSource: '["/images/beauty/beauty1.png", "/images/beauty/marylyn.png"]',
       currentImage: 0
     }
   }
@@ -31,6 +32,48 @@ class Home extends Component {
   componentDidMount(){
     setInterval(this.switchImage, 5000);
 
+    let sketch = new Sketch({
+      debug: true,
+      uniforms: {
+        intensity: {value: 0.3, type:'f', min:0., max:2},
+      },
+      fragment: `
+        uniform float time;
+        uniform float progress;
+        uniform float width;
+        uniform float scaleX;
+        uniform float scaleY;
+        uniform float transition;
+        uniform float radius;
+        uniform float intensity;
+        uniform sampler2D texture1;
+        uniform sampler2D texture2;
+        uniform sampler2D displacement;
+        uniform vec4 resolution;
+        varying vec2 vUv;
+    
+        void main()	{
+          vec2 newUV = (vUv - vec2(0.5))*resolution.zw + vec2(0.5);
+    
+             vec4 d1 = texture2D(texture1, newUV);
+             vec4 d2 = texture2D(texture2, newUV);
+    
+             float displace1 = (d1.r + d1.g + d1.b)*0.33;
+             float displace2 = (d2.r + d2.g + d2.b)*0.33;
+             
+             vec4 t1 = texture2D(texture1, vec2(newUV.x, newUV.y + progress * (displace2 * intensity)));
+             vec4 t2 = texture2D(texture2, vec2(newUV.x, newUV.y + (1.0 - progress) * (displace1 * intensity)));
+    
+             gl_FragColor = mix(t1, t2, progress);
+        }
+      `
+    });
+
+    let canvas = document.getElementsByTagName("canvas");
+    console.log(canvas[0]);
+    setInterval(()=> {
+      canvas[0].click()
+    }, 3000)
   }
 
   changeValue = (event) => {
@@ -56,9 +99,12 @@ class Home extends Component {
               <h1>MUTSUKI</h1>
               <h1>UCHIYAMA</h1>
             </div>
-            <div id="slider">
+            <div id="content" className="content">
+              <div id="slider" data-images={specialImageSource}>
               <input type="range" className="custom-range" id="customRange1" onChange={this.changeValue} value={rangeValue}></input>
+              </div>
             </div>
+            
             <div className = {rangeValue <= 50 ? "special-effect-arrow" : "beauty-arrow" } id="arrow-down">
             <i className="fas fa-chevron-down"></i>
             <i className="fas fa-chevron-down"></i>
@@ -69,16 +115,7 @@ class Home extends Component {
             <Link to="/jp"><h2>JP</h2></Link>
             </div>
           </div>
-          <div id="right-side">
-          <Link to="/en/projects">
-          <img src={`${localStorage.clientUrl}/images/special_effect/test2.JPG`} alt=""/>
-            <img className="img-fluid" src={rangeValue <= 50 ? specialImageSource[currentImage] : beautyImageSource[currentImage] } alt="image" id="special-effect-image"/>
-          </Link>
           <EnglishNavbar />
-          <div id="content" class="content">
-            <div id="slider" data-images={`[${currentURL}/images/special_effect/tribe1.png`, `${currentURL}/images/special_effect/it1.png]`}></div>
-          </div>
-          </div>
         </div>        
       </div>
     );
