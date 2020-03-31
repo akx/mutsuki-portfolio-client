@@ -1,42 +1,25 @@
 import * as THREE from 'three';
 import {TimelineMax, Power2 } from "gsap/all";
 
-class Sketch {
+class SpecialEffectSketch {
   constructor(opts) {
     this.scene = new THREE.Scene();
     this.vertex = `varying vec2 vUv;void main() {vUv = uv;gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );}`;
     this.fragment = opts.fragment;
     this.uniforms = opts.uniforms;
     this.renderer = new THREE.WebGLRenderer();
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
+    this.width = 500;
+    this.height = 600;
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(this.width, this.height);
     this.renderer.setClearColor(0xeeeeee, 1);
     this.duration = opts.duration || 1;
     this.debug = opts.debug || false
     this.easing = opts.easing || 'easeInOut'
-    this.clicker = document.getElementById("content");
-    this.container = document.getElementById("slider");
-    const changeData = () => {
-      let val = document.getElementById("customRange1");
-      let canvas_parent = document.getElementById("slider");
-      console.log(this.container);
-      let data = this.container.dataset.images
-      val.addEventListener("change", (event) => {
-        console.log(event.target.value);
-        if (event.target.value <= 50){
-          data = '["/img/tribe1.png","/img/it1.png"]';
-        } else {
-          this.container.removeAttribute("data-images");
-          data = '["/img/beauty1.png","/img/marylyn.png"]';
-        }
-        console.log(data)
-      })
-    }
-    changeData();
+    this.clicker = document.getElementById("button-trigger");
+    this.container = document.getElementById("special-effect-slider");
+    this.slider = document.getElementById("range-slider");
     this.images = JSON.parse(this.container.getAttribute('data-images'));
-    console.log(this.container);
     this.width = this.container.offsetWidth;
     this.height = this.container.offsetHeight;
     this.container.appendChild(this.renderer.domElement);
@@ -55,7 +38,7 @@ class Sketch {
 
     this.paused = true;
     this.initiate(()=>{
-      console.log(this.textures);
+      // console.log(this.textures);
 
       this.setupResize();
       this.settings();
@@ -65,6 +48,7 @@ class Sketch {
       this.play();
     })
   }
+
 
   initiate(cb){
     const promises = [];
@@ -83,7 +67,7 @@ class Sketch {
 
   clickEvent(){
     this.clicker.addEventListener('click',()=>{
-      console.log(this);
+      // console.log(this);
       this.next();
     })
   }
@@ -217,4 +201,4 @@ class Sketch {
   }
 }
 
-export default Sketch;
+export default SpecialEffectSketch;
