@@ -1,0 +1,11 @@
+.custom-range::-webkit-slider-runnable-track {
+  height: 0.3rem;
+  border-radius: 0;
+}
+
+.custom-range::-webkit-slider-thumb {
+  width: 2rem;
+  height: 2rem;
+  margin-top: -0.85rem;
+  background-color: #007bff;
+}

@@ -45,16 +45,15 @@ class SpecialEffectHomeImage extends Component {
         }
       `
     });
+
+    const canvas = document.getElementsByTagName("canvas")[0];
+    canvas.setAttribute("id", "special-effect-image")
   }
 
   render() {
     return (
       <React.Fragment>
-        <Link to="/projects">
-          <div id="content" className="content">
-            <div id="special-effect-slider" data-images={this.props.images}></div>
-          </div>
-        </Link>
+            <div id="special-effect-slider" className={this.props.range <= 50 ? "active" : "non-active"} data-images={this.props.images}></div>
       </React.Fragment>
     );
   }
