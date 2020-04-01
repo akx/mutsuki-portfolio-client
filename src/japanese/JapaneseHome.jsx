@@ -6,8 +6,8 @@ class Home extends Component {
 
     this.state = {
       rangeValue: 0,
-      specialImageSource: [`${currentURL}/images/special_effect/afrika.JPG`, `${currentURL}/images/special_effect/IT.png`],
-      beautyImageSource: [`${currentURL}/images/beauty/beauty1.JPG`, `${currentURL}/images/beauty/marylyn.png`],
+      specialImageSource: [`${currentURL}/images/special_effect/afrika.jpg`, `${currentURL}/images/special_effect/IT.jpg`],
+      beautyImageSource: [`${currentURL}/images/beauty/beauty1.jpg`, `${currentURL}/images/beauty/marylyn.jpg`],
       currentImage: 0
     }
   }

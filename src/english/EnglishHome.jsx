@@ -10,8 +10,8 @@ class Home extends Component {
     // const currentURL = localStorage.clientUrl;
     this.state = {
       rangeValue: 0,
-      specialImageSource: '["/images/special_effect/tribe1.png", "/images/special_effect/it1.png"]',
-      beautyImageSource: '["/images/beauty/beauty1.png", "/images/beauty/marylyn.png"]',
+      specialImageSource: '["/images/special_effect/tribe1.jpg", "/images/special_effect/it1.jpg"]',
+      beautyImageSource: '["/images/beauty/beauty1.jpg", "/images/beauty/marylyn.jpg"]',
     }
   }
 
