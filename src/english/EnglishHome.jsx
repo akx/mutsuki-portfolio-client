@@ -7,12 +7,13 @@ import SpecialEffectHomeImage from '../SpecialEffectHomeImage';
 class Home extends Component {
   constructor(props){
     super();
-    const currentURL = localStorage.clientUrl;
+    // const currentURL = localStorage.clientUrl;
     this.state = {
       rangeValue: 0,
       specialImageSource: '["/images/special_effect/tribe1.png", "/images/special_effect/it1.png"]',
-      beautyImageSource: '["/images/beauty/beauty1.png", "/images/beauty/marylyn.png"]'
+      beautyImageSource: '["/images/beauty/beauty1.png", "/images/beauty/marylyn.png"]',
     }
+    // this.canvas = document.getElementById("special-effect-image");
   }
 
   componentDidMount(){
@@ -21,6 +22,9 @@ class Home extends Component {
     setInterval(()=> {
       triggerButton.click()
     }, 5000)
+
+    this.specialCanvas = document.getElementById("special-effect-slider");
+    this.beautyCanvas = document.getElementById("beauty-slider");
   }
   
   changeValue = (event) => {
@@ -49,7 +53,7 @@ class Home extends Component {
             <i className="fas fa-chevron-down"></i>
             <i className="fas fa-chevron-down"></i>
             </div>
-            <input type="range" className="custom-range" id="range-slider" onChange={this.changeValue} value={rangeValue}></input>
+            <input type="range" className="custom-range" id="range-slider" step = "0.1" min="0" max="100" onChange={this.changeValue} value={rangeValue}></input>
             <div className="row">
             <Link to="/en"><h2 className="active-language">EN</h2></Link>
             <h2> | </h2>
@@ -59,7 +63,13 @@ class Home extends Component {
 
           <div className="right-side">
           <button className="d-none" id="button-trigger"></button>
-          {rangeValue < 50 ? <SpecialEffectHomeImage images={specialImageSource}/> : <BeautyEffectHomeImage images={beautyImageSource}/>}
+          <Link to="/projects">
+            <div id="content" className="content">
+              <SpecialEffectHomeImage images={specialImageSource} range={rangeValue}/> 
+              <BeautyEffectHomeImage images={beautyImageSource} range={rangeValue}/>
+            </div>
+          </Link>
+
             <EnglishNavbar />
           </div>
         </div>        

@@ -44,15 +44,13 @@ class BeautyEffectHomeImage extends Component {
         }
       `
     });
+    const canvas = document.getElementsByTagName("canvas")[1];
+    canvas.setAttribute("id", "beauty-image")
   }
   render() {
     return (
       <React.Fragment>
-        <Link to="/projects">
-          <div id="content" className="content">
-            <div id="beauty-slider" data-images={this.props.images}></div>
-          </div>
-        </Link>
+            <div id="beauty-slider" className={this.props.range > 50 ? "active" : "non-active"} data-images={this.props.images}></div>
       </React.Fragment>
     );
   }

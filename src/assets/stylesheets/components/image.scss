@@ -1,14 +1,11 @@
-canvas {
-  width: 500px;
-  height: 700px;
+.active{
+  opacity: 1;
+  z-index: 1;
+  transition-duration: 0.2s;
 }
 
 .non-active{
-  z-index: 0;
   opacity: 0;
-}
-
-.active{
-  z-index: 1;
-  opacity: 1;
+  z-index: -1;
+  transition-duration: 0.2s;
 }
