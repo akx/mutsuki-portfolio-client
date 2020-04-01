@@ -52,6 +52,7 @@
   top: 50%;
   margin-top: -2px;
 }
+
 .hamburger-inner,
 .hamburger-inner::before,
 .hamburger-inner::after {
@@ -76,6 +77,21 @@
 .hamburger-inner::after {
   bottom: -12px;
 }
+
+#hamburger-white{
+  background-color: white;
+  &:after{
+  background-color: white;
+  }
+}
+
+#hamburger-black{
+  background-color: black;
+  &:after{
+  background-color: black;
+  }
+}
+
 
 /*
    * Slider

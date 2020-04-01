@@ -33,7 +33,7 @@ class NavBar extends Component {
           aria-label='Toggle navigation'
         >
           <span className='hamburger-box'>
-            <span className='hamburger-inner'></span>
+            <span className='hamburger-inner' id={this.props.range < 50 ? "hamburger-white" : "hamburger-black"}></span>
           </span>
         </button>
       </div>
