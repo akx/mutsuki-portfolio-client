@@ -2,6 +2,8 @@
 @import "./components/image.scss";
 @import "./components/hamburger.scss";
 @import "./components/input.scss";
+@import "./components/text.scss";
+@import "./components/icon.scss";
 @import "./home.scss";
 
 @font-face {
@@ -9,8 +11,24 @@
   src: url("../fonts/big-john.woff") format("woff");
 }
 
+@font-face {
+  font-family: "Slim-Joe";
+  src: url("../fonts/SlimJoe.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Circula-Medium";
+  src: url("../fonts/Circula-Medium.woff") format("woff");
+}
+
 body{
-  background-color: black;
   font-family: "Big-John";
   color: white;
+  background-color: black;
+  transition-duration: 0.2s;
+}
+
+#root{
+  height: 100vh;
+  width: 100vw;
 }

@@ -1,0 +1,19 @@
+#white-mutsuki, #black-mutsuki, .white-language-text, .black-language-text, #white-range-direction, #black-range-direction{
+  transition-duration: 0.2s;
+}
+
+#white-mutsuki, .white-language-text, .white-bracket, #white-range-direction{
+  color: white;
+}
+
+#black-mutsuki, .black-language-text, .black-bracket, #black-range-direction{
+  color: black;
+}
+
+#non-active-language{
+  font-family: "Slim-Joe";
+}
+
+.range-direction{
+  font-family: "Circula-Medium";
+}
