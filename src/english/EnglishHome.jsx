@@ -16,14 +16,12 @@ class Home extends Component {
   }
 
   componentDidMount(){
-
     let triggerButton = document.getElementById("button-trigger");
     setInterval(()=> {
       triggerButton.click()
     }, 5000)
 
-    this.specialCanvas = document.getElementById("special-effect-slider");
-    this.beautyCanvas = document.getElementById("beauty-slider");
+    console.log(window.getComputedStyle(document.getElementById("range-slider"),"::-webkit-slider-runnable-track").getPropertyValue("background-color"));
   }
   
   changeValue = (event) => {
@@ -35,7 +33,6 @@ class Home extends Component {
         document.body.style.backgroundColor="#FFFDF7"
       } else {
         document.body.style.backgroundColor = "#000"
-        
       }
   }
 
